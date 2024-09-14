@@ -41,21 +41,15 @@ pipeline {
             }
         }
 
-        stage('Check Installed Modules') {
-            steps {
-                sh 'npm ls --depth=0'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'npm run build --verbose'
+                sh 'npm run build'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'npm run start --verbose'
+                sh 'npm run start'
             }
         }
     }
