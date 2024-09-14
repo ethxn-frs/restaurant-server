@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs NodeJS 18
-    }
-
     environment {
         NODE_ENV = 'production'
     }
@@ -12,8 +8,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clone le dépôt GitHub
-                git branch: 'main', url: 'https://github.com/username/restaurant-server.git'
+                git branch: 'main', url: 'https://github.com/ethxn-frs/restaurant-server.git'
+            }
+        }
+
+        stage('Install NodeJS') {
+            steps {
+                tool name: 'NodeJs 18', type: 'nodejs'
+                // Ajoute le chemin de NodeJS dans le PATH
+                script {
+                    env.PATH = "${tool name: 'NodeJs 18', type: 'nodejs'}/bin:${env.PATH}"
+                }
             }
         }
 
