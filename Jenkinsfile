@@ -14,17 +14,16 @@ pipeline {
 
         stage('Install NodeJS') {
             steps {
-                tool name: 'NodeJs 18', type: 'nodejs'
+                tool name: 'NodeJs 22', type: 'nodejs'
                 // Ajoute le chemin de NodeJS dans le PATH
                 script {
-                    env.PATH = "${tool name: 'NodeJs 18', type: 'nodejs'}/bin:${env.PATH}"
+                    env.PATH = "${tool name: 'NodeJs 22', type: 'nodejs'}/bin:${env.PATH}"
                 }
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Installe les dépendances
                 sh 'npm install'
             }
         }
@@ -37,14 +36,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Compile le projet
                 sh 'npm run build'
             }
         }
 
         stage('Deploy') {
             steps {
-                // Démarre l'application (ou toute autre commande de déploiement)
                 sh 'npm run start'
             }
         }
@@ -52,11 +49,9 @@ pipeline {
 
     post {
         failure {
-            // Notifie en cas d'échec
             echo 'Deployment failed.'
         }
         success {
-            // Notifie en cas de succès
             echo 'Deployment succeeded.'
         }
     }
