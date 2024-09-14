@@ -39,7 +39,7 @@ pipeline {
                 sh 'npm list @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
             }
         }
-        
+
         stage('Build') {
             steps {
                 sh 'npm run build'
