@@ -26,6 +26,7 @@ pipeline {
             steps {
                 sh 'node -v'
                 sh 'npm -v'
+                sh 'npx tsc -v'
             }
         }
 
@@ -38,8 +39,10 @@ pipeline {
         stage('Install Types') {
             steps {
                 sh 'npm install --save-dev @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
+                sh 'npm list --depth=0'
             }
         }
+
 
         stage('Deploy') {
             steps {
