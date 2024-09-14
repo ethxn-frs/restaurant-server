@@ -12,6 +12,10 @@ import {paymentMethodRoutes} from "./handler/paymentMethod-route";
 
 dotenv.config();
 
+dotenv.config({
+    path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
+});
+
 const validateEnvVariables = () => {
     const requiredEnvVars = [
         'DB_HOST',
@@ -22,7 +26,8 @@ const validateEnvVariables = () => {
         'APP_PORT',
         'EMAIL_TRANSPORTER',
         'PASSWORD_TRANSPORTER',
-        'JWT_SECRET'
+        'JWT_SECRET',
+        'NODE_ENV'
     ];
 
     const missingVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);

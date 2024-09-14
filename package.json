@@ -2,15 +2,15 @@
   "name": "restaurant-server",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "npm run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert",
-    "migration:generate": "npm run typeorm -- migration:generate -n"
-  },
+    "scripts": {
+      "dev": "NODE_ENV=development nodemon --watch src --ext ts --exec ts-node src/index.ts",
+      "build": "tsc",
+      "start": "npm run build && NODE_ENV=production node dist/index.js",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "migration:run": "npm run typeorm -- migration:run",
+      "migration:revert": "npm run typeorm -- migration:revert",
+      "migration:generate": "npm run typeorm -- migration:generate -n"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",

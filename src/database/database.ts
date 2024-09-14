@@ -7,7 +7,9 @@ import * as dotenv from 'dotenv';
 import {User} from "./entity/user";
 import {PaymentMethod} from "./entity/paymentMethod";
 
-dotenv.config();
+dotenv.config({
+    path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
+});
 
 const config: DataSourceOptions = {
     type: 'postgres',
