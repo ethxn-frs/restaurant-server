@@ -29,6 +29,12 @@ pipeline {
             }
         }
 
+        stage('Install Types') {
+            steps {
+                sh 'npm install --save-dev @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
+            }
+        }
+
         stage('Build') {
             steps {
                 // Compile le projet
