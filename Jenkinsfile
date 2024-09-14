@@ -15,7 +15,6 @@ pipeline {
         stage('Install NodeJS') {
             steps {
                 tool name: 'NodeJs 22', type: 'nodejs'
-                // Ajoute le chemin de NodeJS dans le PATH
                 script {
                     env.PATH = "${tool name: 'NodeJs 22', type: 'nodejs'}/bin:${env.PATH}"
                 }
@@ -43,6 +42,14 @@ pipeline {
             }
         }
 
+        stage('Clean and Reinstall Dependencies') {
+            steps {
+                sh 'npm cache clean --force'
+                sh 'rm -rf node_modules'
+                sh 'npm install'
+                sh 'npm install --save-dev @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
+            }
+        }
 
         stage('Deploy') {
             steps {
