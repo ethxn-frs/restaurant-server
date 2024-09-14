@@ -28,6 +28,13 @@ pipeline {
             }
         }
 
+        stage('Verify Types') {
+            steps {
+                sh 'npm list @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
+            }
+        }
+
+
         stage('Install Types') {
             steps {
                 sh 'npm install --save-dev @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
