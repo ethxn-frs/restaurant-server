@@ -22,6 +22,13 @@ pipeline {
             }
         }
 
+        stage('Check Node and NPM Versions') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -34,21 +41,21 @@ pipeline {
             }
         }
 
-        stage('Verify Types') {
+        stage('Check Installed Modules') {
             steps {
-                sh 'npm list @types/jsonwebtoken @types/nodemailer @types/bcrypt @types/express @types/cors'
+                sh 'npm ls --depth=0'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build --verbose'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'npm run start'
+                sh 'npm run start --verbose'
             }
         }
     }
