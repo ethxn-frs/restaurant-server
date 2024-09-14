@@ -46,15 +46,11 @@ pipeline {
             steps {
                 // Démarre l'application (ou toute autre commande de déploiement)
                 sh 'npm run start'
-            }
+            }   
         }
     }
 
     post {
-        always {
-            // Nettoie les fichiers temporaires, ferme les services, etc.
-            sh 'npm run clean'
-        }
         failure {
             // Notifie en cas d'échec
             echo 'Deployment failed.'
