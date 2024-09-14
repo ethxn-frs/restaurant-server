@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // Démarre l'application (ou toute autre commande de déploiement)
                 sh 'npm run start'
-            }   
+            }
         }
     }
 
