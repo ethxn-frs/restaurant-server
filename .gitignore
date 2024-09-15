@@ -1,4 +1,4 @@
 .env
 .env.production
 /dist
-docker-compose.yml
+node_modules
